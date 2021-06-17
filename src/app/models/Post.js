@@ -8,7 +8,6 @@ const Post = new Schema(
     title: { type: String, required: true },
     description: { type: String },
     image: { type: String },
-    videoId: { type: String, required: true },
     userId: { type: mongoose.Schema.Types.ObjectId, ref:"User"  },
     // typeClassId: { type: mongoose.Schema.Types.ObjectId, required: true },
   },

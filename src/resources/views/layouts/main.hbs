@@ -68,12 +68,23 @@
           </div>
           <a
             class='list-group-item list-group-item-action list-group-item-light p-3'
-            href='#!'
-          >Contact</a>
-          <a
-            class='list-group-item list-group-item-action list-group-item-light p-3'
-            href='#!'
-          >Profile</a>
+            href='/me/stored/post'
+          >New Feed</a>
+          <div class='dropdown'>
+            <a
+              class='list-group-item list-group-item-action list-group-item-light p-3 btn btn-secondary dropdown-toggle'
+              type='button'
+              id='dropdownMenuButton1'
+              data-bs-toggle='dropdown'
+              aria-expanded='false'
+            >
+              CourseType
+            </a>
+            <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
+              <li><a class='dropdown-item' href='/courseType'>Quản lý kiểu khóa học</a></li>
+              <li><a class='dropdown-item' href='/courseType/create'>Tạo kiểu khóa học</a></li>
+            </ul>
+          </div>
           <a
             class='list-group-item list-group-item-action list-group-item-light p-3'
             href='#!'

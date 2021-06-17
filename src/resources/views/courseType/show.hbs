@@ -1,15 +1,13 @@
-
 <div class='container'>
   <div class='row'>
     <div class='mt-4'>
-            <h1 style="text-align: center;  background-color:#FFE4C4;padding:20px;font-weight: bold;">Courses  App</h1>
-
+      <h3>Khóa học của tôi</h3>
       <table class='table table-dark table-striped'>
         <thead>
           <tr>
             <th scope='col'>STT</th>
             <th scope='col'>Tên khóa học</th>
-            <th scope='col'>Trình độ</th>
+            <th scope='col'>Chi tiết</th>
             <th scope='col'>Thời gian tạo</th>
             <th scope='col'>Action</th>
           </tr>
@@ -19,11 +17,15 @@
             <tr>
               <th scope='row'>{{sum @index 1}}</th>
               <td>{{this.name}}</td>
-              <td>{{this.level}}</td>
-              <td>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</td>
+              <td>{{this.description}}</td>
+              <td>{{dateFormat
+                  this.createdAt
+                  'dddd, MMMM Do YYYY, h:mm:ss a'
+                }}</td>
+
               <td><a
                   type='button'
-                  href='/courses/{{this._id}}/edit'
+                  href='/courseType/{{this._id}}/edit'
                   class='btn btn-success'
                 >Update</a>
                 <a
@@ -42,7 +44,7 @@
   </div>
 </div>
 
-{{!confirm delete courses-}}
+{{!confirm delete courses}}
 <div
   class='modal fade'
   id='deleteleModal'
@@ -84,13 +86,11 @@
 
 <script>
   const deleteModal = document.getElementById('deleteleModal');
-
-  deleteModal.addEventListener('show.bs.modal', function (event) { 
-    const deleteForm = document.getElementById("DeleteForm"); 
-  // Button that triggered
-     const button = event.relatedTarget; // Extract info from data-bs-*
-     const id = button.getAttribute('data-bs-id'); const
-     btnDeleteCourese = document.getElementById('btn-delete-course');
-       btnDeleteCourese.onclick = function(){
-       deleteForm.action = '/courses/'+id+'?_method=DELETE'; deleteForm.submit(); } })
+  deleteModal.addEventListener('show.bs.modal', function (event) { const
+  deleteForm = document.getElementById("DeleteForm"); // Button that triggered
+  const button = event.relatedTarget; // Extract info from data-bs-* const id =
+  button.getAttribute('data-bs-id'); const btnDeleteCourese =
+  document.getElementById('btn-delete-course'); btnDeleteCourese.onclick =
+  function(){ deleteForm.action = '/courseType/'+id+'?_method=DELETE';
+  deleteForm.submit(); } })
 </script>
