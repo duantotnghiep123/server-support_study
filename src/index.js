@@ -1,3 +1,4 @@
+"use strict";
 const express = require ('express');
 const path = require ('path');
 const morgan = require ('morgan');
@@ -25,6 +26,7 @@ app.use (
 );
 app.use (express.json ());
 
+
 //template engine
 app.engine (
   'hbs',
@@ -33,6 +35,7 @@ app.engine (
     //sử dụng function trong express handlerbar 
     helpers: {
       sum: (a, b) => a + b,
+      dateFormat: require('handlebars-dateformat'),
     },
   })
 );
