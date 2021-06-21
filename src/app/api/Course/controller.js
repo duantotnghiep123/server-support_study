@@ -1,7 +1,7 @@
 var Courses = require("../../models/Courses")
 
 exports.getAll = async function (req, res) {
-  const payload = await Courses.find().populate('courseType','name description')
+  const payload = await Courses.find().populate('courseType','name description').populate('userId','name image')
   res.status(200).json({
     payload,
   })

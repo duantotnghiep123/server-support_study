@@ -81,11 +81,7 @@ class UserController {
   async apiLogin (req, res) {
     const {email, password} = req.body;
 
-    if (!email || !password)
-      return res
-        .status (400)
-        .json ({success: false, message: 'Sai mail hoặc mật khẩu'});
-
+     
     const user = await User.findOne ({
       email: email,
       password: sha256 (password + process.env.SALT),

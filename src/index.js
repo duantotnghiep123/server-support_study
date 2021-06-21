@@ -1,18 +1,29 @@
 "use strict";
 const express = require ('express');
+const http = require ('http');
 const path = require ('path');
+const cors = require('cors');
 const morgan = require ('morgan');
 const exphbs = require ('express-handlebars');
-var methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const socketio = require('socket.io');
 const app = express ();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 const route = require ('./routes');
 //import db
 const db = require ('./config/db');
+const server = http.createServer(app);
+const io = socketio(server);
 //connnect to db
 db.connect ();
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
+app.use(cors());
+//io
+io.on('connection',(socket)=>{
+  console.log('we have a new connection')
+})
+
 //public nhung file public
 app.use (express.static (path.join ('src', 'public')));
 app.use (express.static (path.join ('src', 'resources/assets')));
@@ -47,4 +58,4 @@ route (app);
 
 //127.0.0.1 --- localhost
 
-app.listen (port, () => {});
+server.listen (PORT, () => console.log(`Server sẵn sàng với port là ${PORT}`));
