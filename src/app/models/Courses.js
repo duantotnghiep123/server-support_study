@@ -8,7 +8,7 @@ const Course = new Schema(
     name: { type: String, required: true },
     description: { type: String },
     image: { type: String },
-    userId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
     courseType: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
