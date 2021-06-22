@@ -9,8 +9,10 @@ const auth = require('../middlewares/auth')
 
 // router.get('/',postController.create);
 router.post('/',auth,postController.create);
+router.post('/admin',postController.adminCreate);
 router.get('/storeId',auth,postController.getById);
 router.put('/:id',auth,postController.update);
+router.delete('/admin/:id',postController.adminDelete);
 router.delete('/:id',auth,postController.delete);
 
 

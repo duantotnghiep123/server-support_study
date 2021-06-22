@@ -80,6 +80,39 @@ class PostController {
       res.json ({message: error});
     }
   }
+
+
+    //[POST],/post/admin
+    async adminCreate (req, res, next) {
+      const {title, description, image} = req.body;
+      if (!title)
+        return res
+          .status (400)
+          .json ({success: false, message: 'title để trống'});
+  
+      try {
+        const newPost = new Post ({
+          title,
+          description,
+          image,
+        });
+        await newPost.save ();
+        res.redirect ('/me/stored/post');
+      } catch (error) {
+        res.json ({error: error});
+      }
+    }
+  async adminDelete (req, res) {
+    try {
+      const deleteOne = await Post.findOneAndDelete ({_id: req.params.id});
+      if (!deleteOne)
+        return res.json ({success: false, message: 'delete Fail'});
+      res.redirect ('back');
+    } catch (error) {
+      res.json ({message: error});
+    }
+  }
+
 }
 
 module.exports = new PostController ();

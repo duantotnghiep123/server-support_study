@@ -1,5 +1,7 @@
 const Courses = require ('../models/Courses');
 const Users = require ('../models/User');
+const Post = require('../models/Post');
+
 const {mutipleMongooseToObject} = require ('../../util/mongoose');
 
 class MeController {
@@ -18,6 +20,12 @@ class MeController {
     }))
     .catch(next);
  
+  }
+  postApp (req, res,next) {
+    Post.find({}).then((posts)=>  res.render('me/stored-post',{
+      posts: mutipleMongooseToObject(posts)
+    }))
+    .catch(next);
   }
 }
 

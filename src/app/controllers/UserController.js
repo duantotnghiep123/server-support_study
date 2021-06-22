@@ -39,10 +39,10 @@ class UserController {
         image,
       });
       await user.save ();
-      const accessToken = jwt.sign (
-        {userId: user._id},
-        process.env.ACCESS_TOKEN_SECRET
-      );
+      // const accessToken = jwt.sign (
+      //   {userId: user._id},
+      //   process.env.ACCESS_TOKEN_SECRET
+      // );
       // res.json ({success: true, message: 'success', accessToken});
       res.redirect ('/home');
     } catch (error) {
@@ -81,11 +81,7 @@ class UserController {
   async apiLogin (req, res) {
     const {email, password} = req.body;
 
-    if (!email || !password)
-      return res
-        .status (400)
-        .json ({success: false, message: 'Sai mail hoặc mật khẩu'});
-
+     
     const user = await User.findOne ({
       email: email,
       password: sha256 (password + process.env.SALT),
