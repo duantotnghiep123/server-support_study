@@ -31,7 +31,7 @@ class PostController {
   async getById (req, res, next) {
     console.log ('req.userId', req.userId);
     try {
-      const post = await Post.find ({userId: req.userId}).populate ('userId');
+      const post = await Post.find ({userId: req.userId}).populate ('userId').populate('comment');
       res.json ({success: true, post});
     } catch (error) {
       res.json ({error: error});
