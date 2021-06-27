@@ -38,7 +38,22 @@ exports.getAllPost = async function (req, res) {
   })
 }
 
-exports.createPost = postController.create
+exports.createPost = async function (req, res) {
+  var post_image=req.file.filename
+  let post = new Post({
+      title: req.body.title,
+      description: req.body.description,
+      groupDesc: req.body.groupDescription,
+      image: `http://localhost:3000/post/${post_image}`,
+      userId: req.body.userId,
+  });
+  try {
+    const payload = await post.save()
+    res.status(200).json({ payload })
+  } catch (error) {
+    console.log("ERR", err)
+  }
+}
 
 exports.getById = async function (req, res) {
   try {

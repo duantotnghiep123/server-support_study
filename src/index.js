@@ -17,6 +17,8 @@ const io = socketio(server);
 //connnect to db
 db.connect ();
 
+app.use('/profile', express.static('src/uploads/users/'));
+app.use('/group', express.static('src/uploads/group/'));
 app.use(methodOverride('_method'));
 app.use(cors());
 //io
