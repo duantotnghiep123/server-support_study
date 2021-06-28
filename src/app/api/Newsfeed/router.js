@@ -15,7 +15,9 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 router
   .get("/", controller.getAllPost)
-  .get("/:id", controller.getById)
-  .post("/:id", controller.addComment)
+  .get("/byId", controller.getById)
+  .post("/addComment", controller.addComment)
   .post("/",upload.single('post'), controller.createPost)
+  .put("/:id",controller.updatePost)
+  .delete("/:id",controller.deletePost)
 module.exports = router //exporst qua index.js để su dung
