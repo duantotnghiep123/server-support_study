@@ -40,20 +40,17 @@ class PostController {
   //[PUT],/:id
 
   async update (req, res, next) {
-    const {title, description, image, videoId} = req.body;
+    const description = req.body;
 
     console.log (req.userId);
-    if (!title)
+    if (!description)
       return res
         .status (400)
         .json ({success: false, message: 'title để trống'});
 
     try {
       const newPost = {
-        title,
-        description,
-        image,
-        videoId,
+        description
       };
       const postUpdateCondition = {_id: req.params.id, userId: req.userId};
       const updateNew = await Post.findOneAndUpdate (

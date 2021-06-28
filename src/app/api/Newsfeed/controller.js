@@ -1,13 +1,13 @@
 const Comment = require("../../models/Comment")
 const Post = require("../../models/Post")
-const postController = require("../../controllers/PostController")
+const PostController = require("../../controllers/PostController")
 exports.addComment = async function (req, res) {
   const data = req.body
   const comment = new Comment(data)
   try {
     const payload = await comment
       .save()
-      .then(() => Post.findById(req.params.id))
+      .then(() => Post.findById(req.body.postId))
       .then((post) => {
         post.comment.unshift(comment)
         return post.save()
@@ -41,9 +41,7 @@ exports.getAllPost = async function (req, res) {
 exports.createPost = async function (req, res) {
   var post_image=req.file.filename
   let post = new Post({
-      title: req.body.title,
       description: req.body.description,
-      groupDesc: req.body.groupDescription,
       image: `http://localhost:3000/post/${post_image}`,
       userId: req.body.userId,
   });
@@ -57,7 +55,7 @@ exports.createPost = async function (req, res) {
 
 exports.getById = async function (req, res) {
   try {
-    const payload = await Post.findById(req.params.id)
+    const payload = await Post.findById(req.body.id)
       .populate([
         {
           path: "comment",
@@ -86,3 +84,7 @@ exports.getById = async function (req, res) {
     })
   }
 }
+
+exports.deletePost = PostController.delete
+
+exports.updatePost = PostController.update
