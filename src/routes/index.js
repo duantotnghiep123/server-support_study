@@ -15,6 +15,7 @@ const newsFeedApiRouter = require("../app/api/Newsfeed/router")
 const apiUser = require("../app/api/User/route")
 const apiGroup = require("../app/api/Group/router")
 const apiParticipant = require("../app/api/Participant/router")
+const apiNote = require("../app/api/Note/router")
 
 //tập hợp các đường dẫn sau khi mình ấn locohost
 function route(app) {
@@ -27,7 +28,6 @@ function route(app) {
   app.use("/courseType", courseType)
   app.use("/home", sitesRouter)
   app.use("/question", questionRouter)
-  
 
   // api
   app.use("/api/post", postRouter)
@@ -39,5 +39,6 @@ function route(app) {
   app.use(apiUser)
   app.use(apiGroup)
   app.use(apiParticipant)
+  app.use("/api/note",apiNote)
 }
 module.exports = route
