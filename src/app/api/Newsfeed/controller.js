@@ -3,18 +3,20 @@ const Post = require ('../../models/Post');
 const Like = require ('../../models/Like');
 
 const postController = require ('../../controllers/PostController');
+const Post = require("../../models/Post")
+const PostController = require("../../controllers/PostController")
 exports.addComment = async function (req, res) {
   const data = req.body;
   const comment = new Comment (data);
   try {
     const payload = await comment
-      .save ()
-      .then (() => Post.findById (req.params.id))
-      .then (post => {
-        post.comment.unshift (comment);
-        return post.save ();
-      });
-    res.status (200).json ({payload});
+      .save()
+      .then(() => Post.findById(req.body.postId))
+      .then((post) => {
+        post.comment.unshift(comment)
+        return post.save()
+      })
+    res.status(200).json({ payload })
   } catch (error) {
     console.log ('ERR', error);
   }
@@ -41,13 +43,11 @@ exports.getAllPost = async function (req, res) {
 };
 
 exports.createPost = async function (req, res) {
-  var post_image = req.file.filename;
-  let post = new Post ({
-    title: req.body.title,
-    description: req.body.description,
-    groupDesc: req.body.groupDescription,
-    image: `http://localhost:3000/post/${post_image}`,
-    userId: req.body.userId,
+  var post_image=req.file.filename
+  let post = new Post({
+      description: req.body.description,
+      image: `http://localhost:3000/post/${post_image}`,
+      userId: req.body.userId,
   });
   try {
     const payload = await post.save ();
@@ -117,4 +117,8 @@ exports.like = async function (req, res) {
   } catch (error) {
     console.log ('ERR', error);
   }
-};
+}
+
+exports.deletePost = PostController.delete
+
+exports.updatePost = PostController.update
