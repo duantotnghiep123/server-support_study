@@ -17,5 +17,6 @@ router
   .get("/", controller.getAllPost)
   .get("/:id", controller.getById)
   .post("/:id", controller.addComment)
+  .post("/like/:id", controller.like)
   .post("/",upload.single('post'), controller.createPost)
 module.exports = router //exporst qua index.js để su dung
