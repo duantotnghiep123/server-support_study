@@ -1,8 +1,7 @@
 const Comment = require ('../../models/Comment');
-const Post = require ('../../models/Post');
+
 const Like = require ('../../models/Like');
 
-const postController = require ('../../controllers/PostController');
 const Post = require("../../models/Post")
 const PostController = require("../../controllers/PostController")
 exports.addComment = async function (req, res) {
