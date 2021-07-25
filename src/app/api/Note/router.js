@@ -3,8 +3,8 @@ const router = express.Router()
 const controller = require("./controller")
 
 router
-  .get("/groupNote", controller.getGroupNote)
-  .get("/selfNote", controller.getSelfNote)
+  .get("/getByType/", controller.getNoteByType)
   .post("/addNote", controller.addNote)
-
+  .put("/",controller.update)
+  .delete("/",controller.delete)
 module.exports = router //exporst qua index.js để su dung

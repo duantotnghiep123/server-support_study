@@ -7,30 +7,11 @@ exports.getAll = async function (req, res) {
   })
 }
 
-exports.getGroupNote = async function (req, res) {
-  try {
-    const payload = await Note.find({ isGroupNote: 1,userId: req.body.userId }).populate(
-      "userId",
-      "id name image"
-    )
-    if (!payload) {
-      res.status(404).json({
-        error: "Resource not found!!",
-      })
-    }
-    res.status(200).json({
-      payload,
-    })
-  } catch (error) {
-    console.log("ERR", err)
-  }
-}
-
-exports.getSelfNote = async function (req, res) {
+exports.getNoteByType = async function (req, res) {
   try {
     const payload = await Note.find({
-      isGroupNote: 0,
-      userId: req.body.userId,
+      isGroupNote: req.query.isGroupNote,
+      userId: req.query.userId,
     }).populate("userId", "id name image")
     if (!payload) {
       res.status(404).json({
@@ -41,7 +22,7 @@ exports.getSelfNote = async function (req, res) {
       payload,
     })
   } catch (error) {
-    console.log("ERR", err)
+    console.log("ERR", error)
   }
 }
 
@@ -53,6 +34,49 @@ exports.addNote = async function (req, res) {
 
     res.status(200).json({ payload })
   } catch (error) {
-    console.log("ERR", err)
+    console.log("ERR", error)
+  }
+}
+
+exports.delete = async function (req, res) {
+  const payload = await Note.findById(req.query.id)
+
+  if (!payload) {
+    res.status(404).json({
+      error: "Resource not found!!",
+    })
+  }
+
+  try {
+    await payload.delete()
+    res.status(200).json({
+      payload,
+    })
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    })
+  }
+}
+
+exports.update = async function (req, res) {
+  try {
+    const payload = await Note.findByIdAndUpdate(req.query.id, req.body, {
+      new: true,
+      runValidators: true,
+    })
+
+    if (!payload) {
+      res.status(404).json({
+        error: "Resource not found!!",
+      })
+    }
+    res.status(200).json({
+      payload,
+    })
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    })
   }
 }
