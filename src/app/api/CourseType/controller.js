@@ -18,7 +18,5 @@ exports.store = async function (req, res) {
 
 exports.getAll = async function (req, res) {
     const payload = await CourseType.find();
-    res.status(200).json({
-      payload,
-    })
+    res.status(200).json(payload)
   }
