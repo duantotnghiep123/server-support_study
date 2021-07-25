@@ -12,7 +12,7 @@ exports.store = async function (req, res) {
 
     res.status(200).json({ payload })
   } catch (error) {
-    console.log("ERR", err)
+    console.log("ERR", error)
   }
 }
 

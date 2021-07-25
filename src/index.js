@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 const route = require ('./routes');
 //import db
 const db = require ('./config/db');
+var groupCourseController=require('./app/api/groupcourse/router')
+
 const server = http.createServer(app);
 const io = socketio(server);
 //connnect to db
@@ -38,6 +40,7 @@ app.use (
   })
 );
 app.use (express.json ());
+app.use(groupCourseController)
 
 
 //template engine
