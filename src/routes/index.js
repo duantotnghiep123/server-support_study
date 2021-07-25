@@ -1,5 +1,5 @@
 const newsRouter = require("./news")
-const userRouter = require("./user")
+const userRouter = require("./useradmin")
 const meRouter = require("./me")
 const chatRoomRouter = require("./chatroom")
 const coursesRouter = require("./courses")

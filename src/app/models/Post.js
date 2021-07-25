@@ -8,8 +8,9 @@ const Post = new Schema(
     description: { type: String, required: true },
     image: { type: String },
     userId: { type: mongoose.Schema.Types.ObjectId, ref:"User"  },
-    comment: [{type: mongoose.Schema.Types.ObjectId,ref:"Comment"}]
-    // typeClassId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    comment: [{type: mongoose.Schema.Types.ObjectId,ref:"Comment"}],
+    like: [{type: mongoose.Schema.Types.ObjectId,ref:"Like"}],
+    typeClassId: { type: mongoose.Schema.Types.ObjectId, required: true },
   },
   {
     timestamps: true,
