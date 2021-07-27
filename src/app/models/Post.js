@@ -10,7 +10,7 @@ const Post = new Schema(
     userId: { type: mongoose.Schema.Types.ObjectId, ref:"User"  },
     comment: [{type: mongoose.Schema.Types.ObjectId,ref:"Comment"}],
     like: [{type: mongoose.Schema.Types.ObjectId,ref:"Like"}],
-    typeClassId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    // typeClassId: { type: mongoose.Schema.Types.ObjectId, required: true },
   },
   {
     timestamps: true,
