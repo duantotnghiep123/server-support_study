@@ -21,6 +21,7 @@ router
   .get("/byId", controller.getById)
   .post("/addComment", controller.addComment)
   .post("/",upload.single('post'), controller.createPost)
+  .post("/createNoImage",controller.createPostNoImage)
   .put("/:id",controller.updatePost)
   .delete("/:id",controller.deletePost)
 module.exports = router //exporst qua index.js để su dung

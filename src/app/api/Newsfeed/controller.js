@@ -52,7 +52,20 @@ exports.createPost = async function (req, res) {
     const payload = await post.save ();
     res.status (200).json ({payload});
   } catch (error) {
-    console.log ('ERR', err);
+    console.log ('ERR', error);
+  }
+};
+
+exports.createPostNoImage = async function (req, res) {
+  let post = new Post({
+      description: req.body.description,
+      userId: req.body.userId,
+  });
+  try {
+    const payload = await post.save ();
+    res.status (200).json ({payload});
+  } catch (error) {
+    console.log ('ERR', error);
   }
 };
 
