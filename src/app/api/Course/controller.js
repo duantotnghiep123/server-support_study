@@ -2,9 +2,7 @@ var Courses = require("../../models/Courses")
 
 exports.getAll = async function (req, res) {
   const payload = await Courses.find().populate('courseType','name description').populate('userId','name image')
-  res.status(200).json({
-    payload,
-  })
+  res.status(200).json(payload)
 }
 
 exports.getById = async function (req, res) {

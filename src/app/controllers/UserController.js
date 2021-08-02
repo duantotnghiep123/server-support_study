@@ -8,9 +8,9 @@ const slug = require("mongoose-slug-generator");
 
 class UserController {
   //[GET],/
-  dangky (req, res) {
-    res.render ('login-register-custom', {layout: false});
-  }
+  // dangky (req, res) {
+  //   res.render ('login-register-custom', {layout: false});
+  // }
   login (req, res) {
     res.render ('login', {layout: false});
   }
