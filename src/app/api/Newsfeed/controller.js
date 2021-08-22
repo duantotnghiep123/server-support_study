@@ -3,7 +3,8 @@ const Comment = require ('../../models/Comment');
 const Like = require ('../../models/Like');
 
 const Post = require("../../models/Post")
-const PostController = require("../../controllers/PostController")
+const PostController = require("../../controllers/PostController");
+const { post } = require('./router');
 exports.addComment = async function (req, res) {
   const data = req.body;
   const comment = new Comment (data);
@@ -63,11 +64,24 @@ exports.createPost = async function (req, res) {
 
 exports.getById = async function (req, res) {
   try {
-    const payload = await Post.findById (req.params.id)
+    const {like, userId, postId} = req.body;
+    const payload = await Post.findById (postId)
       .populate ([
         {
           path: 'comment',
           model: 'Comment',
+          select: 'content createdAt',
+          populate: {
+            path: 'userId',
+            model: 'User',
+            select: 'name image',
+          },
+        },
+      ])
+      .populate ([
+        {
+          path: 'like',
+          model: 'Like',
           select: 'content',
           populate: {
             path: 'userId',
