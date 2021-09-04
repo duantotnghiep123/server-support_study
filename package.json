@@ -7,7 +7,8 @@
     "beautiful": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "node-sass --watch src/resources/scss/ -o src/public/css/",
-    "start": "nodemon --inspect src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon --inspect src/index.js"
   },
   "repository": {
     "type": "git",
