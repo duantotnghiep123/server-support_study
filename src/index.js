@@ -7,7 +7,7 @@ const exphbs = require("express-handlebars")
 const methodOverride = require("method-override")
 const socketio = require("socket.io")
 const app = express()
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 3000
 const route = require("./routes")
 //import db
 const db = require("./config/db")
