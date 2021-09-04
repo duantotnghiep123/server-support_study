@@ -3,7 +3,6 @@ const express = require("express")
 const http = require("http")
 const path = require("path")
 const cors = require("cors")
-const morgan = require("morgan")
 const exphbs = require("express-handlebars")
 const methodOverride = require("method-override")
 const socketio = require("socket.io")
@@ -61,7 +60,10 @@ route(app)
 
 //127.0.0.1 --- localhost
 
-app.listen(process.env.PORT || 8000, function(){
-  console.log("Express server listening on port %d in %s mode");
+server.listen(PORT, () => {
+  console.log("App is running on port " + port);
 });
+// app.listen(process.env.PORT || 8000, function(){
+//   console.log("Express server listening on port %d in %s mode");
+// });
 // server.listen(PORT, () => console.log(`Server sẵn sàng với port là ${PORT}`))
