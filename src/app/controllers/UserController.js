@@ -3,8 +3,7 @@ const User = require ('../models/User');
 const {mongooseToObject} = require ('../../util/mongoose');
 const sha256 = require ('js-sha256');
 const jwt = require ('jsonwebtoken');
-const slug = require("mongoose-slug-generator");
-
+const slug = require ('mongoose-slug-generator');
 
 class UserController {
   //[GET],/
@@ -19,18 +18,17 @@ class UserController {
 
   async register (req, res, next) {
     const {name, email, password, isTurtor, image} = req.body;
-    const emailRegex = /@gmail.com|@yahoo.com/;
+    // const emailRegex = /@gmail.com|@yahoo.com/;
 
-    if (!emailRegex.test (email)) res.json ({error: 'Khong ho tro domain'});
+    // if (!emailRegex.test (email)) res.json ({error: 'Khong ho tro domain'});
 
     if (password.length < 6) res.json ({error: 'Pass chứa 6 ký tự'});
 
     try {
-      const checkExits = await User.findOne ({
-        email: email,
-      });
-      if (checkExits) return res.json ({error: 'Trùng Mail rồi bạn'});
-
+      const checkExits = await User.find ({email});
+      console.log (checkExits);
+      if (checkExits.length < 0)
+        return res.json ({error: 'Trùng Mail rồi bạn'});
       const user = new User ({
         name,
         email,
@@ -39,12 +37,7 @@ class UserController {
         image,
       });
       await user.save ();
-      // const accessToken = jwt.sign (
-      //   {userId: user._id},
-      //   process.env.ACCESS_TOKEN_SECRET
-      // );
-      // res.json ({success: true, message: 'success', accessToken});
-      res.redirect ('/home');
+      res.json ({success: true, message: 'success'});
     } catch (error) {
       console.log ('ERRRRRORRR', error);
     }
@@ -67,7 +60,10 @@ class UserController {
 
     if (!user)
       return res.json ({success: false, message: 'Sai mail hoặc mật khẩu'});
-
+    // const accessToken = jwt.sign (
+    //   {userId: user._id},
+    //   process.env.ACCESS_TOKEN_SECRET
+    // );
     res.redirect ('./home');
   }
 
@@ -81,7 +77,6 @@ class UserController {
   async apiLogin (req, res) {
     const {email, password} = req.body;
 
-     
     const user = await User.findOne ({
       email: email,
       password: sha256 (password + process.env.SALT),
@@ -100,11 +95,29 @@ class UserController {
       res.json ({success: false, message: 'Lỗi server'});
     }
   }
+  async findUserId (req, res) {
+    User.find ({_id: req.body._id}).exec (function (err, data) {
+      if (err) {
+        if (err.kind === 'ObjectId') {
+          return res.status (404).send ({
+            message: 'Student not found with given Subject Id ' +
+              req.params.subjectId,
+          });
+        }
+        return res.status (500).send ({
+          message: 'Error retrieving Student with given subject Id ' +
+            req.params.subjectId,
+        });
+      }
+
+      res.send (data);
+    });
+  }
 
   //[POST]/api/user
   async apiRegister (req, res, next) {
     const {name, email, password, isTurtor, image} = req.body;
-    
+
     const emailRegex = /@gmail.com|@yahoo.com/;
 
     if (!emailRegex.test (email)) res.json ({error: 'Khong ho tro domain'});

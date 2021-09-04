@@ -66,6 +66,17 @@ exports.createGroupNoImage = async function (req, res) {
     })
   }
 
+  exports.admindeleteGroup = async (req, res) => {
+  try {
+    const deleteOne = await GroupCourse.findOneAndDelete ({_id: req.params.id});
+    if (!deleteOne) return res.json ({success: false, message: 'delete Fail'});
+    res.redirect ('back');
+  } catch (error) {
+    res.json ({message: error});
+  }
+};
+
+
   exports.getAllGroupByCourseID = async function (req, res) {
     await GroupCourse.find({ courseId: req.body.courseId})
     .populate([

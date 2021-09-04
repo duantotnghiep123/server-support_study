@@ -24,7 +24,7 @@ exports.createGroupWithImage = function (req, res) {
 
 exports.insertGroup = async (req, respon) => {
   let group = new Group ({
-    participant:null,
+    participant: null,
     createBy: req.body.createBy,
     groupName: req.body.groupName,
     groupDescription: req.body.groupDescription,
@@ -76,6 +76,16 @@ exports.deleteGroup = (req, res) => {
     }
     res.json (result);
   });
+};
+
+exports.admindeleteGroup = async (req, res) => {
+  try {
+    const deleteOne = await Group.findOneAndDelete ({_id: req.params.id});
+    if (!deleteOne) return res.json ({success: false, message: 'delete Fail'});
+    res.redirect ('back');
+  } catch (error) {
+    res.json ({message: error});
+  }
 };
 
 exports.updateGroupName = (req, res) => {

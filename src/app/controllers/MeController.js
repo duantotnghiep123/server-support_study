@@ -1,6 +1,7 @@
 const Courses = require ('../models/Courses');
 const Users = require ('../models/User');
 const Post = require('../models/Post');
+const Group = require('../models/Group');
 
 const {mutipleMongooseToObject} = require ('../../util/mongoose');
 
@@ -24,6 +25,12 @@ class MeController {
   postApp (req, res,next) {
     Post.find({}).then((posts)=>  res.render('me/stored-post',{
       posts: mutipleMongooseToObject(posts)
+    }))
+    .catch(next);
+  }
+  groupApp(req, res,next) {
+    Group.find({}).then((group)=>  res.render('me/stored-group',{
+      group: mutipleMongooseToObject(group)
     }))
     .catch(next);
   }

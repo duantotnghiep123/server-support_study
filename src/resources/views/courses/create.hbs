@@ -1,43 +1,49 @@
-<div class='mt-4'>
+<div class="mt-4">
   <h3>Đăng khóa học</h3>
   <form method="POST" action="/courses/store">
-    <div class='mb-3'>
-      <label for='name' class='form-label'>Tên khóa học</label>
+    <input
+      type="hidden"
+      id="userId"
+      name="userId"
+      value="61338fc855ad6103d4c3170f"
+    />
+    <div class="mb-3">
+      <label for="name" class="form-label">Tên khóa học</label>
+      <input type="text" class="form-control" id="name" name="name" />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Mô tả khóa học</label>
       <input
-        type='text'
-        class='form-control'
-        id='name'
-        name='name'
+        type="text"
+        class="form-control"
+        id="description"
+        name="description"
       />
     </div>
-    <div class='mb-3'>
-      <label for='description' class='form-label'>Mô tả khóa học</label>
-      <input
-        type='text'
-        class='form-control'
-        id='description'
-        name='description'
-      />
+    <div class="mb-3">
+      <label for="image" class="form-label">Hình ảnh</label>
+      <input type="text" class="form-control" id="image" name="image" />
     </div>
-    <div class='mb-3'>
-      <label for='videoId' class='form-label'>VideoId</label>
-      <input
-        type='text'
-        class='form-control'
-        id='videoId'
-        name='videoId'
-      />
-    </div>
-    <div class='mb-3'>
-      <label for='level' class='form-label'>Level</label>
-      <input
-        type='text'
-        class='form-control'
-        id='level'
-        name='level'
-      />
+    <div class="form-group">
+      <label for="courseType">Loại khóa học</label>
+      <select class="form-control" id="courseType" name="courseType">
+        <option value="60f263a02d1e3a1798255c3b">Android</option>
+        <option value="60f263d62d1e3a1798255c3c">Flutter</option>
+        <option value="60f263ef2d1e3a1798255c3d">React-native</option>
+      </select>
     </div>
 
-    <button type='submit' class='btn btn-primary'>Thêm Khóa Học</button>
+
+    <div class="form-group">
+      <label for="courseType">Level</label>
+      <select class="form-control" id="level" name="level">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+   
+
+    <button type="submit" class="btn btn-primary">Thêm Khóa Học</button>
   </form>
 </div>

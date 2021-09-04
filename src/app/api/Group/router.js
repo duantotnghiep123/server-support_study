@@ -25,5 +25,6 @@ router
 //   .delete("/:id", controller.delete)
 
 .post("/api/createGroupWithImage",upload.single('group'), controller.createGroupWithImage)
+.delete("/api/adminDeleteGroup", controller.admindeleteGroup)
 
 module.exports = router //exporst qua index.js để su dung
