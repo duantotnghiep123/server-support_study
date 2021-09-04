@@ -8,7 +8,7 @@ const exphbs = require("express-handlebars")
 const methodOverride = require("method-override")
 const socketio = require("socket.io")
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8000
 const route = require("./routes")
 //import db
 const db = require("./config/db")
@@ -61,4 +61,7 @@ route(app)
 
 //127.0.0.1 --- localhost
 
-server.listen(PORT, () => console.log(`Server sẵn sàng với port là ${PORT}`))
+app.listen(process.env.PORT || 8000, function(){
+  console.log("Express server listening on port %d in %s mode");
+});
+// server.listen(PORT, () => console.log(`Server sẵn sàng với port là ${PORT}`))
