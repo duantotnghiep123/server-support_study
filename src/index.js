@@ -61,7 +61,7 @@ route(app)
 //127.0.0.1 --- localhost
 
 server.listen(PORT, () => {
-  console.log("App is running on port " + port);
+  console.log("App is running on port " + PORT);
 });
 // app.listen(process.env.PORT || 8000, function(){
 //   console.log("Express server listening on port %d in %s mode");
