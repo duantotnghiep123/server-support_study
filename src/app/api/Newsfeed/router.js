@@ -18,7 +18,7 @@ router
   .get("/:id", controller.getById)
   .post("/:id", controller.addComment)
   .post("/like/:id", controller.like)
-  .put("/byId", controller.getById)
+  .post("/byId", controller.getById)
   .post("/addComment", controller.addComment)
   .post("/",upload.single('post'), controller.createPost)
   .put("/:id",controller.updatePost)

@@ -41,6 +41,7 @@ class PostController {
 
   async update (req, res, next) {
     const description = req.body;
+    const id = req.body;
 
     console.log (req.userId);
     if (!description)

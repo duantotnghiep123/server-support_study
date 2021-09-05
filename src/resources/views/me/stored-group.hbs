@@ -88,7 +88,7 @@
      const id = button.getAttribute('data-bs-id');
   const btnDeleteCourese = document.getElementById('btn-delete-user');
   btnDeleteCourese.onclick = function () {
-      deleteForm.action = '/api/adminDeleteGroup' + id + '?_method=DELETE';
+      deleteForm.action = '/api/adminDelete/' + id + '?_method=DELETE';
       deleteForm.submit(); 
   } })
 </script>

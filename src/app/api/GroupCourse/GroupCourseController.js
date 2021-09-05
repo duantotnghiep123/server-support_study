@@ -155,6 +155,11 @@ exports.createGroupNoImage = async function (req, res) {
       });
   };
 
+ exports. delete =(req, res, next) =>{
+  GroupCourse.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next)
+  }
 
 
   exports.updateGroupImage = function (req, res)  {

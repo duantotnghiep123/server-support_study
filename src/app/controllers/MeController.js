@@ -1,7 +1,7 @@
 const Courses = require ('../models/Courses');
 const Users = require ('../models/User');
 const Post = require('../models/Post');
-const Group = require('../models/Group');
+const Group = require('../models/GroupCourse');
 
 const {mutipleMongooseToObject} = require ('../../util/mongoose');
 

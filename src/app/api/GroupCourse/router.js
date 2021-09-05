@@ -30,6 +30,7 @@ router
   .post("/api/getAllGroupByID", controller.getAllGroupByID)
   .post("/api/updateGroupName", controller.updateGroupName)
   .post("/api/deleteGroup", controller.deleteGroup)
+  .delete("/api/adminDelete/:id", controller.delete)
 
 
 module.exports = router //exporst qua index.js để su dung
