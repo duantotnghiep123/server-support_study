@@ -29,6 +29,7 @@ io.on("connection", (socket) => {
 
 //public nhung file public
 app.use(express.static(path.join("src", "public")))
+app.use(express.static(path.join("src", "uploads")))
 app.use(express.static(path.join("src", "resources/assets")))
 // console.log(__dirname,'public');
 //http loger
