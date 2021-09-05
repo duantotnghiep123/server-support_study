@@ -16,7 +16,7 @@ var upload = multer({ storage: storage })
 router
   .get("/", controller.getAllPost)
   .get("/:id", controller.getById)
-  .get("/byId", controller.getById)
+  .put("/byId", controller.getById)
   .post("/:id", controller.addComment)
   .post("/like/:id", controller.like)
   .post("/addComment", controller.addComment)
