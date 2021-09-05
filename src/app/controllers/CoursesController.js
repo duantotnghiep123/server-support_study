@@ -45,7 +45,7 @@ class CoursesController {
     data.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`
 
     Courses.updateOne({ _id: req.params.id }, data)
-      .then(() => res.redirect("/me/stored/courses"))
+      .then(() => res.redirect("/question"))
       .catch(next)
   }
   //[DELETE],/courses/:id

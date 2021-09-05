@@ -45,7 +45,7 @@ class questionController {
   update(req, res, next) {
     const data = req.body
     Question.updateOne({ _id: req.params.id }, data)
-      .then(() => res.redirect("/me/stored/courses"))
+      .then(() => res.redirect("/question"))
       .catch(next)
   }
   //[DELETE],/question/:id

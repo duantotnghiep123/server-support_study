@@ -1,6 +1,6 @@
 <div class='mt-4'>
   <h3>Update Câu hỏi</h3>
-  <form method='POST' action='/question/store'>
+  <form method='POST' action='/question/{{question._id}}?_method=PUT'>
     <div class='mb-3'>
       <label for='title' class='form-label'>Tên Câu hỏi</label>
         <textarea
