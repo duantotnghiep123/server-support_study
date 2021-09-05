@@ -51,7 +51,7 @@ exports.createPost = async function (req, res) {
   var post_image=req.file.filename
   let post = new Post({
       description: req.body.description,
-      image: `https://learning-support-application.herokuapp.com/post/${post_image}`,
+      image: `http://localhost:3000/post/${post_image}`,
       userId: req.body.userId,
   });
   try {

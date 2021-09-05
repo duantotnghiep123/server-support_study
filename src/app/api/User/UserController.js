@@ -6,7 +6,7 @@ exports.editImage = function (req, res)  {
   var new_image=req.file.filename
   var old_image=req.body.old_image
   User.findByIdAndUpdate(
-    { _id: id }, { image: `https://learning-support-application.herokuapp.com/profile/${new_image}` }
+    { _id: id }, { image: `http://localhost:3000/profile/${new_image}` }
     ,
     function (err, result) {
       if (err) {

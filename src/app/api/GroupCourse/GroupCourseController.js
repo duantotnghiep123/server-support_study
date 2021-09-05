@@ -23,7 +23,7 @@ exports.createGroupNoImage = async function (req, res) {
         createBy: req.body.createBy,
         groupName: req.body.groupName,
         groupDescription: req.body.groupDescription,
-        groupImage: `https://learning-support-application.herokuapp.com/group/${group_image}`,
+        groupImage: `http://localhost:3000/group/${group_image}`,
         courseId: req.body.courseId,
     });
 
@@ -167,7 +167,7 @@ exports.createGroupNoImage = async function (req, res) {
     var new_image=req.file.filename
     var old_image=req.body.old_image
     GroupCourse.findByIdAndUpdate(
-      { _id: id }, { groupImage: `https://learning-support-application.herokuapp.com/group/${new_image}` }
+      { _id: id }, { groupImage: `http://localhost:3000/group/${new_image}` }
       ,
     ).populate([
         {
